@@ -1,12 +1,14 @@
 package main
 
 import (
-	"fmt"
 	"github.com/caarlos0/env"
 	"github.com/dimorinny/twitch-interesting-fragments-frontend/configuration"
 	"github.com/dimorinny/twitch-interesting-fragments-frontend/data"
+	"github.com/kataras/iris"
 	"gopkg.in/mgo.v2"
 	"log"
+	"github.com/kataras/go-template/html"
+	"net/http"
 )
 
 var (
@@ -40,11 +42,33 @@ func init() {
 }
 
 func main() {
+	iris.OptionIsDevelopment(true)
+	iris.UseTemplate(html.New(html.Config{
+		Layout: "index.html",
+	})).Directory(
+		"./template",
+		".html",
+	)
+
+	iris.Get("/", Index)
+
+	iris.Listen(":8080")
+}
+
+type IndexPage struct {
+	Fragments []data.UploadedFragment
+}
+
+func Index(ctx *iris.Context) {
 	result, err := storage.GetUploadedImages()
 	if err != nil {
-		log.Fatal(err)
+		ctx.EmitError(http.StatusInternalServerError)
 	}
 
-	fmt.Println(len(result))
-	fmt.Println(result)
+	ctx.Render(
+		"fragments.html",
+		IndexPage{
+			Fragments: result,
+		},
+	)
 }
