@@ -1,14 +1,16 @@
 package main
 
 import (
+	"fmt"
 	"github.com/caarlos0/env"
 	"github.com/dimorinny/twitch-interesting-fragments-frontend/configuration"
 	"github.com/dimorinny/twitch-interesting-fragments-frontend/data"
-	"github.com/kataras/iris"
 	"gopkg.in/mgo.v2"
 	"log"
-	"github.com/kataras/go-template/html"
 	"net/http"
+	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/view"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 )
 
 var (
@@ -42,17 +44,21 @@ func init() {
 }
 
 func main() {
-	iris.OptionIsDevelopment(true)
-	iris.UseTemplate(html.New(html.Config{
-		Layout: "index.html",
-	})).Directory(
-		"./template",
-		".html",
+	app := iris.New()
+	app.Adapt(
+		iris.DevLogger(),
+		view.HTML("./template", ".html"),
+		httprouter.New(),
 	)
 
-	iris.Get("/", Index)
 
-	iris.Listen(":8080")
+	app.Get("/", Index)
+
+	app.Listen(fmt.Sprintf(
+		"%s:%d",
+		config.Host,
+		config.Port,
+	))
 }
 
 type IndexPage struct {

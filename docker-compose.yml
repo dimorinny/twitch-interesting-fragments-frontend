@@ -1,0 +1,15 @@
+version: '2'
+services:
+  frontend:
+    image: 76838ac1bcda
+    depends_on:
+      - mongo
+    environment:
+      STORAGE_HOST: mongo
+      HOST: 0.0.0.0
+      PORT: 80
+    ports:
+      - "80:80"
+
+  mongo:
+    image: mongo:latest
