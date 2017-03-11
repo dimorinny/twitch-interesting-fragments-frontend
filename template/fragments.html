@@ -1,16 +1,45 @@
-{{range .Fragments}}
-<div>
-    <div style="width: 100%; height: 0; position: relative; padding-bottom: 56.338%;">
-        <iframe src="{{.Url}}"
-                frameborder="0"
-                allowfullscreen
-                webkitallowfullscreen
-                mozallowfullscreen
-                scrolling="no"
-                style="width: 100%; height: 100%; position: absolute;"
-        ></iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stream fragments</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+    <style>
+        .container {
+            margin: 16px auto !important;
+            width: 1200px;
+        }
+
+        .video_item {
+            width: 100% !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container ui three column grid">
+    {{range .Fragments}}
+    <div class="column">
+        <div class="ui card video_item">
+            <div class="image">
+                <div style="width: 100%; height: 0; position: relative; padding-bottom: 56.338%;">
+                    <iframe src="{{.Url}}"
+                            frameborder="0"
+                            allowfullscreen
+                            webkitallowfullscreen
+                            mozallowfullscreen
+                            scrolling="no"
+                            style="width: 100%; height: 100%; position: absolute;"
+                    ></iframe>
+                </div>
+            </div>
+            <div class="content">
+                <div class="header"> {{.Name}}</div>
+            </div>
+        </div>
     </div>
-    <div>{{.Name}}</div>
-    <div>{{.Rate}}</div>
+    {{end}}
 </div>
-{{end}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+</body>
+</html>
