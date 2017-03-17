@@ -8,9 +8,9 @@ services:
     environment:
       STORAGE_HOST: mongo
       HOST: 0.0.0.0
-      PORT: 8080
+      PORT: 80
     ports:
-      - "8080:8080"
+      - "80:80"
 
   detector:
     image: dimorinny/twitch-interesting-fragments-detector
@@ -32,6 +32,9 @@ services:
     restart: always
     environment:
       TWITCH_OAUTH: ${OAUTH}
+      VK_OAUTH: ${VK_OAUTH}
+      VK_GROUP_ID: ${VK_GROUP_ID}
+      TIMEZONE: Europe/Moscow
       TWITCH_CHANNEL: cahchec
       PORT: 80
 
