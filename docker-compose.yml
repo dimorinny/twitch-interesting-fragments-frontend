@@ -40,3 +40,5 @@ services:
 
   mongo:
     image: mongo:latest
+    volumes:
+      - /db:/data/db
