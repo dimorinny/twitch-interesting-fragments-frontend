@@ -20,6 +20,10 @@
             width: 100% !important;
         }
 
+        .spike_rate {
+            margin-top: 8px;
+        }
+
         .clipboard_container {
             width: 100%;
             height: 34px;
@@ -46,6 +50,11 @@
             </div>
             <div class="content">
                 <div class="header"> {{$element.Name}}</div>
+
+                <div class="meta spike_rate">
+                    <i class="icon star"></i>
+                    <span>{{printf "%.2f" $element.Rate}}</span>
+                </div>
 
                 <div class="ui action input clipboard_container">
                     <input type="text" class="clipboard_input_{{$index}}" value="{{$element.Url}}">

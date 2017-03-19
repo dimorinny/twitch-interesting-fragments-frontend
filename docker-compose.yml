@@ -12,6 +12,7 @@ services:
     ports:
       - "80:80"
 
+  # Nagib
   detector:
     image: dimorinny/twitch-interesting-fragments-detector
     restart: always
@@ -22,7 +23,8 @@ services:
       NICKNAME: ${NICKNAME}
       OAUTH: ${CHAT_OAUTH}
       CHANNEL: cahchec
-      RECORD_DELAY: 35
+      SPIKE_RATE: 3.7
+      RECORD_DELAY: 25
       UPLOADER_HOST: uploader
       UPLOADER_PORT: 80
       STORAGE_HOST: mongo
@@ -36,6 +38,34 @@ services:
       VK_GROUP_ID: ${VK_GROUP_ID}
       TIMEZONE: Europe/Moscow
       TWITCH_CHANNEL: cahchec
+      PORT: 80
+
+  # Golovach
+  lena_detector:
+    image: dimorinny/twitch-interesting-fragments-detector
+    restart: always
+    depends_on:
+      - mongo
+      - uploader
+    environment:
+      NICKNAME: ${NICKNAME}
+      OAUTH: ${CHAT_OAUTH}
+      CHANNEL: lenagol0vach
+      SPIKE_RATE: 3.7
+      RECORD_DELAY: 25
+      UPLOADER_HOST: lena_uploader
+      UPLOADER_PORT: 80
+      STORAGE_HOST: mongo
+
+  lena_uploader:
+    image: dimorinny/twitch-fragment-uploader
+    restart: always
+    environment:
+      TWITCH_OAUTH: ${OAUTH}
+      VK_OAUTH: ${VK_OAUTH}
+      VK_GROUP_ID: ${VK_GROUP_ID}
+      TIMEZONE: Europe/Moscow
+      TWITCH_CHANNEL: lenagol0vach
       PORT: 80
 
   mongo:
