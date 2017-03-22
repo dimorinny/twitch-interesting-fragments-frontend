@@ -1,6 +1,6 @@
 version: '2'
 services:
-§  detector:
+  detector:
     image: dimorinny/twitch-interesting-fragments-detector
     restart: always
     depends_on:
