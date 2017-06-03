@@ -1,0 +1,36 @@
+Arguments: 
+  /usr/local/Cellar/node/7.8.0/bin/node /usr/local/Cellar/node/7.8.0/bin/yarn global upgrade truffle
+
+PATH: 
+  /usr/local/Cellar/node/7.8.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/go/bin:/Users/damerkurev/Documents/Projects/Golang/bin:/Users/damerkurev/Library/Android/sdk/platform-tools/:/Users/damerkurev/Users/damerkurev/.gvm/scripts/:/Users/damerkurev/Library/Android/sdk/tools/
+
+Yarn version: 
+  0.21.3
+
+Node version: 
+  7.8.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: ENOENT: no such file or directory, open '/Users/damerkurev/.config/yarn/global/node_modules/yarn/node_modules/strip-bom/index.js'
+      at Object.fs.openSync (fs.js:584:18)
+      at Object.fs.readFileSync (fs.js:491:33)
+      at Object.Module._extensions..js (module.js:579:20)
+      at Module.load (module.js:488:32)
+      at tryModuleLoad (module.js:447:12)
+      at Function.Module._load (module.js:439:3)
+      at Module.require (module.js:498:17)
+      at require (internal/module.js:20:19)
+      at Object.<anonymous> (/Users/damerkurev/.config/yarn/global/node_modules/yarn/lib/util/fs.js:812:18)
+      at Module._compile (module.js:571:32)

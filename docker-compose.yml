@@ -19,8 +19,9 @@ services:
     restart: always
     environment:
       TWITCH_OAUTH: ${OAUTH}
-      VK_OAUTH: ${VK_OAUTH}
-      VK_GROUP_ID: ${VK_GROUP_ID}
+      UPLOAD_BACKEND: streamable
+      STREAMABLE_USER: ${STREAMABLE_USER},
+      STREAMABLE_PASSWORD: ${STREAMABLE_PASSWORD},
       TIMEZONE: Europe/Moscow
       TWITCH_CHANNEL: cahchec
       PORT: 80
@@ -44,8 +45,9 @@ services:
     restart: always
     environment:
       TWITCH_OAUTH: ${OAUTH}
-      VK_OAUTH: ${VK_OAUTH}
-      VK_GROUP_ID: ${VK_GROUP_ID}
+      UPLOAD_BACKEND: streamable
+      STREAMABLE_USER: ${STREAMABLE_USER},
+      STREAMABLE_PASSWORD: ${STREAMABLE_PASSWORD},
       TIMEZONE: Europe/Moscow
       TWITCH_CHANNEL: lenagol0vach
       PORT: 80
